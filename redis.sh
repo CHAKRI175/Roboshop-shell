@@ -23,20 +23,19 @@ validate(){
     fi
 }
 
-dnf module disable redis -y
-validate $? "redis module disable"
-
-dnf module enable redis:7 -y
+dnf module disable redis -y | &>>$log_file
+dnf module enable redis:7 -y | &>>$log_file
 validate $? "redis module enable"
 
 dnf install redis -y | &>>$log_file
 validate $? "redis-server"
 
-echo -e "$G Redis installation completed successfully. $NC" | tee -a $log_file
+echo -e "$G Redis installation completed successfully. $NC" | &>>$log_file
 
-sed -i 's/bindIp: 127.0.0.1/bindIp: 0.0.0.0/g' /etc/redis/redis.conf
+sed -i -e 's/127.0.0.1/0.0.0.0/g' -e '/protected-mode/ c protected-mode no' /etc/redis/redis.conf
+validate $? "redis config file change"
 
-systemctl enable redis
+systemctl enable redis | &>>$log_file
 validate $? "redis service enable and start"
 
 systemctl status redis | &>>$log_file
