@@ -36,10 +36,7 @@ sed -i -e 's/127.0.0.1/0.0.0.0/g' -e '/protected-mode/ c protected-mode no' /etc
 validate $? "redis config file change"
 
 systemctl enable redis | &>>$log_file
-validate $? "redis service enable and start"
-
-systemctl status redis | &>>$log_file
-validate $? "redis service status check"
+validate $? "redis service enable "
 
 systemctl start redis
 validate $? "redis service start"
