@@ -22,7 +22,7 @@ validate(){
         echo -e "$2 $G installation successful. $NC" | tee -a $log_file
     fi
 }
-cp mongodb.repo /etc/yum.repos.d/mongo.repo
+cp $Path/mongodb.repo /etc/yum.repos.d/mongo.repo
 validate $? "mongodb repo file copy"
 
 dnf install mongodb-org -y | &>>$log_file

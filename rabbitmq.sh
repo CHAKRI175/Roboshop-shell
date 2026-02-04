@@ -20,7 +20,7 @@ validate(){
         echo -e "$2 $G installation successful. $NC" | tee -a $log_file
     fi
 }       
-cp rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo &>>$log_file
+cp $Path/rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo &>>$log_file
 
 dnf install rabbitmq-server -y &>>$log_file
 validate $? "rabbitmq-server"
