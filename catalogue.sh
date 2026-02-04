@@ -59,7 +59,7 @@ validate $? "catalogue zip extract"
 npm install &>>$log_file
 validate $? "npm dependencies installation"
 
-cp $Path/catalogue.service /etc/systemd/system/catalogue.service
+cp $Path/catalogue.service.repo /etc/systemd/system/catalogue.service
 validate $? "catalogue service file copy"
 
 systemctl daemon-reload
