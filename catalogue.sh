@@ -76,8 +76,8 @@ echo -e "$G Catalogue service setup completed successfully. $NC" | tee -a $log_f
 cp $Path/mongodb.repo /etc/yum.repos.d/mongo.repo
 validate $? "mongodb repo file copy"
 
-dnf install mongodb-org-shell -y &>>$log_file
-validate $? "mongodb-org-shell installation"
+dnf install mongodb-mongosh -y &>>$log_file
+validate $? "mongodb-mongosh installation"
 
 INDEX=$(mongosh --host $MONGODB_HOST --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
 
