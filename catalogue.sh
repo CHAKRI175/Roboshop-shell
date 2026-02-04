@@ -83,7 +83,7 @@ validate $? "mongodb-mongosh installation"
 INDEX=$(mongosh --host $MONGODB_HOST --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
 
 if [ $INDEX -le 0 ]; then
-    mongosh --host $MONGODB_HOST --quiet  < $Path/catalogue.js &>>$log_file
+     mongosh --host $MONGODB_HOST </app/db/master-data.js
     validate $? "catalogue schema setup"
 else
     echo -e "$Y catalogue schema is already present. $NC" | tee -a $log_file
