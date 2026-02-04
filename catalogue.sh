@@ -81,7 +81,7 @@ validate $? "mongodb-mongosh installation"
 
 INDEX=$(mongosh --host $MONGODB_HOST --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
 
-if [ $INDEX -eq -1 ]; then
+if [ $INDEX -le 0 ]; then
     mongosh --host $MONGODB_HOST --quiet  < $Path/catalogue.js &>>$log_file
     validate $? "catalogue schema setup"
 else
