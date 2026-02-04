@@ -75,7 +75,7 @@ validate $? "mysql client install"
 mysql -h $MYSQL_HOST -uroot -pRoboShop@1 -e 'use cities'
 if [ $? -ne 0 ]; then
 
-    mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/schema.sql $>>$log_file
+    mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/schema.sql &>>$log_file
     mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/app-user.sql &>>$log_file
     mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/master-data.sql &>>$log_file
     validate $? "Loaded data into MySQL"
