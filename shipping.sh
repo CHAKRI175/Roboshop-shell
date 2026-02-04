@@ -7,7 +7,7 @@ Y="\e[33m"
 B="\e[34m"
 NC="\e[0m"
 Path=$PWD   
-$MYSQL_HOST=mysql.chakri.sbs
+MYSQL_HOST=mysql.chakri.sbs
 if [ $owner -ne 0 ]; then
     echo -e "$R Please run this script as root. $NC" | tee -a $log_file
     exit 1
