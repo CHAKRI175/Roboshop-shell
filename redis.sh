@@ -1,4 +1,4 @@
-owner=($(id -u))
+owner=$(id -u)
 logs_dir="/var/log/RoboShop-shell" 
 log_file="$logs_dir/$0.log"
 R="\e[31m"
@@ -13,8 +13,8 @@ if [ $owner -ne 0 ]; then
 fi          
  
 mkdir -p $logs_dir
-validate(){ 
 
+validate(){ 
     if [ $1 -ne 0 ]; then
         echo -e "$2 $R installation failed. $NC" | tee -a $log_file
         exit 1
@@ -23,11 +23,11 @@ validate(){
     fi
 }
 
-dnf module disable redis -y | &>>$log_file
-dnf module enable redis:7 -y | &>>$log_file
+dnf module disable redis -y &>>$log_file
+dnf module enable redis:7 -y &>>$log_file
 validate $? "redis module enable"
 
-dnf install redis -y | &>>$log_file
+dnf install redis -y &>>$log_file
 validate $? "redis-server"
 
 echo -e "$G Redis installation completed successfully. $NC" | &>>$log_file
